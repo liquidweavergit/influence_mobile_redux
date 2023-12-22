@@ -1,0 +1,43 @@
+version: '3,8'
+
+services:
+  website:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        RUBY_VERSION: '3.2.2'
+    env_file:
+      - ./.env
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - postgres
+    ports:
+      - 3000:3000
+
+  #  sidekiq:
+  #    <<: *base
+  #    command: bundle exec sidekiq -C config/sidekiq.yml
+
+  redis:
+    image: redis:latest
+    restart: always
+
+  postgres:
+    image: postgres:14.2-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=interface_mobile_dev
+      - POSTGRES_PASSWORD=interface_mobile_dev
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres_data:

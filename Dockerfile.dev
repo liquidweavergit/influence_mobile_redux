@@ -1,0 +1,33 @@
+ARG RUBY_VERSION
+FROM ruby:$RUBY_VERSION
+
+# RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq && \
+    apt-get install -y build-essential \
+    libvips \
+    bash \
+    bash-completion \
+    libffi-dev \
+    tzdata \
+    postgresql \
+    nodejs \
+    yarn && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
+
+COPY \
+  Gemfile \
+  Gemfile.lock \
+  ./
+
+WORKDIR /app
+
+VOLUME ["/app"]
+
+RUN gem update --system
+RUN bundle install -j $(nproc)
+RUN yarn install
+CMD ["puma", "-C", "config/puma.rb"]
+# CMD ["bin/dev"]
