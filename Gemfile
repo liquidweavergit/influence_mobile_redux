@@ -60,6 +60,10 @@ gem "faker", "~> 3.2"
 # Basic Sass processing
 gem 'sassc-rails', '~> 2.1', '>= 2.1.2'
 
+# Mark Weaver - 2023-12-23
+# email validator
+gem 'email_validator', '~> 2.2', '>= 2.2.4'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -77,10 +81,18 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # Mark Weaver - 2023-12-23
+  # Testing
+  gem 'rspec-rails', '~> 6.1'
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
+  # Mark Weaver - 2023-12-23
+  # Testing
+  gem 'rspec-rails', '~> 6.1'
 end
