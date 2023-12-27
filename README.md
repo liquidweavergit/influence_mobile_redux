@@ -36,7 +36,8 @@ docker-compose up
 The database needs to be created and migrated running the following commands
 You will need to run commands on the 'website' Docker container
 Run this command in a separate terminal instance
-You can then seed the database
+Create and Migrate are run automatically when creating the Docker instance
+Seed needs to be run to have the first user and sample Offers
 
 ```bash
 docker-compose exec website bash
@@ -58,6 +59,7 @@ password: password
 To run the Rspec tests, run the following commands
 You will need to run commands on the 'website' Docker container
 Run this command in a separate terminal instance
+(you will not have to "bash" into the container if you already have)
 
 ```bash
 docker-compose exec website bash
