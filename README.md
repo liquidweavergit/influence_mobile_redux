@@ -46,15 +46,16 @@ bin/rails db:migrate
 bin/rails db:seed
 ```
 
-And now you can visit the site with the URL http://localhost:3000
+##### 6. Javascript dependencies
 
-You can signup manually: http://localhost:3000
+Install yarn dependencies
 
-Or use the seeded admin user:
-email: admin@admin.com
-password: password
+```bash
+docker-compose exec website bash
+yarn install
+```
 
-##### 5. Run Tests
+##### 6. Run Tests
 
 To run the Rspec tests, run the following commands
 You will need to run commands on the 'website' Docker container
@@ -62,5 +63,13 @@ Run this command in a separate terminal instance
 
 ```bash
 docker-compose exec website bash
-rspec
+bundle exec rspec
 ```
+
+And now you can visit the site with the URL http://localhost:3000
+
+You can signup manually: http://localhost:3000
+
+Or use the seeded admin user:
+email: admin@admin.com
+password: password

@@ -28,6 +28,7 @@ VOLUME ["/app"]
 
 RUN gem update --system
 RUN bundle install -j $(nproc)
+RUN mkdir -p tmp/pids
 RUN yarn install
 CMD ["puma", "-C", "config/puma.rb"]
 # CMD ["bin/dev"]
