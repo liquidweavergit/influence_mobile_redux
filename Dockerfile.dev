@@ -20,14 +20,15 @@ RUN apt-get update -qq && \
 COPY \
   Gemfile \
   Gemfile.lock \
+  package.json \
+  yarn.lock \
   ./
 
 WORKDIR /app
 
 VOLUME ["/app"]
 
-RUN gem update --system
-RUN bundle install -j $(nproc)
-RUN yarn install
+COPY docker-entrypoint.sh /usr/local/bin
+
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["puma", "-C", "config/puma.rb"]
-# CMD ["bin/dev"]

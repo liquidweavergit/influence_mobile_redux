@@ -28,7 +28,6 @@ You may need to create the pids directory (included below)
 
 ```bash
 docker-compose build
-mkdir -p tmp/pids
 docker-compose up
 ```
 
@@ -62,5 +61,5 @@ Run this command in a separate terminal instance
 
 ```bash
 docker-compose exec website bash
-rspec
+bundle exec rspec
 ```
