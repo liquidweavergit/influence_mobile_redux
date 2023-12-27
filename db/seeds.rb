@@ -33,6 +33,6 @@ Offer.destroy_all
       min_age: min_age,
       max_age: max_age,
       gender: %w[male female any].sample,
-      expiration_date: Date.today + valid_days.days,
+      expiration_date: Date.today + rand(60..730).days,
   )
 end
