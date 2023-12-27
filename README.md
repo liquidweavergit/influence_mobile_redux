@@ -28,7 +28,6 @@ You may need to create the pids directory (included below)
 
 ```bash
 docker-compose build
-mkdir -p tmp/pids
 docker-compose up
 ```
 
@@ -37,7 +36,8 @@ docker-compose up
 The database needs to be created and migrated running the following commands
 You will need to run commands on the 'website' Docker container
 Run this command in a separate terminal instance
-You can then seed the database
+Create and Migrate are run automatically when creating the Docker instance
+Seed needs to be run to have the first user and sample Offers
 
 ```bash
 docker-compose exec website bash
@@ -60,10 +60,12 @@ yarn install
 To run the Rspec tests, run the following commands
 You will need to run commands on the 'website' Docker container
 Run this command in a separate terminal instance
+(you will not have to "bash" into the container if you already have)
 
 ```bash
 docker-compose exec website bash
 bundle exec rspec
+<<<<<<< HEAD
 ```
 
 And now you can visit the site with the URL http://localhost:3000
@@ -71,5 +73,8 @@ And now you can visit the site with the URL http://localhost:3000
 You can signup manually: http://localhost:3000
 
 Or use the seeded admin user:
-email: admin@admin.com
+
+username: admin
+
 password: password
+
