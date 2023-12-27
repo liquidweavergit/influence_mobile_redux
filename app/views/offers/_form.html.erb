@@ -1,17 +1,69 @@
-<%= form_with(model: offer) do |form| %>
-  <% if offer.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
-
-      <ul>
-        <% offer.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+<%= form_with(model: @offer, :html=>{  class: "needs-validation", novalidate: true }) do |f| %>
+  <% if @offer.errors.any? %>
+    <ul>
+      <% @offer.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
   <% end %>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group row col-sm-12">
+    <%= f.label :title, :html=>{ class: "col-sm-2 col-form-label" } %>
+    <%= f.email_field :title,
+                      autofocus: true,
+                      class: "form-control",
+                      required: 'true' %>
+  </div>
+
+  <div class="form-group row col-sm-12">
+    <%= f.label :description, :html=>{ class: "col-sm-2 col-form-label" } %>
+    <%= f.text_area :description,
+                    size: '50x10',
+                    class: "form-control",
+                    required: 'true' %>
+  </div>
+
+  <div class="form-group row col-sm-12">
+    <div class="col-sm-12 col-form-label">
+      Gender
+    </div>
+    <div class="form-check form-check-inline">
+      <%= f.radio_button :gender, 'male' %>
+      <%= f.label :gender, 'Male', :value => 'male' %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= f.radio_button :gender, 'female' %>
+      <%= f.label :gender, 'Female', :value => 'female' %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= f.radio_button :gender, 'other' %>
+      <%= f.label :gender, 'Any', :value => 'other' %>
+    </div>
+  </div>
+
+  <div class="form-group row col-sm-12 pt-3">
+    <%= f.label :min_age, :html=>{ class: "col-sm-2 col-form-label" } %>
+    <%= f.text_field :min_age,
+                     class: "form-control" %>
+  </div>
+
+  <div class="form-group row col-sm-12 pt-3">
+    <%= f.label :max_age, :html=>{ class: "col-sm-2 col-form-label" } %>
+    <%= f.text_field :max_age,
+                     class: "form-control" %>
+  </div>
+
+  <div class="form-group row col-sm-12 pt-3">
+    <%= f.label :expiration_date, :html=>{ class: "col-sm-2 col-form-label" } %>
+    <%= f.date_field :expiration_date,
+                     min: Date.today,
+                     class: "form-control" %>
+  </div>
+
+  <div class="form-group row pt-2 col-sm-12 text-end pt-3">
+    <div class="col-sm-12">
+      <%= f.submit button_text, html={ class: "btn btn-primary mb-2" } %>
+    </div>
   </div>
 <% end %>
+

@@ -1,10 +1,31 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @offer %>
-
-<div>
-  <%= link_to "Edit this offer", edit_offer_path(@offer) %> |
-  <%= link_to "Back to offers", offers_path %>
-
-  <%= button_to "Destroy this offer", @offer, method: :delete %>
+<div class="d-flex justify-content-center vh-90 center pt-2">
+  <div class="card shadow" style="width: 50%;">
+    <h5 class="card-header"><%= @offer.title %></h5>
+    <div class="card-body">
+      <div class="row">
+        <b>Description:</b>
+        <p><%= @offer.description %></p>
+      </div>
+      <div class="row">
+        <b>Age Range:</b>
+        <p><%= @offer.min_age %> - <%= @offer.max_age %></p>
+      </div>
+      <div class="row">
+        <b>Age Range:</b>
+        <p><%= @offer.gender %></p>
+      </div>
+      <div class="row">
+        <b>Expiration Date:</b>
+        <p><%= @offer.expiration_date %></p>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+      <%= link_to "Back", offers_path, class: 'btn btn-secondary' %>
+      <% if @is_admin %>
+        <%= link_to "Edit", edit_offer_path(@offer), class: 'btn btn-primary' %>
+        <%= button_to "Destroy", @offer, method: :delete, class: 'btn btn-danger' %>
+      <% end %>
+    </div>
+  </div>
 </div>
+

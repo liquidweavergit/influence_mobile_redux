@@ -11,6 +11,33 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle">
+      <a class="navbar-brand" href="#">
+        <%= image_tag "influence-mobile-main-logo.png", height: '50', class: 'd-inline-block align-top m-1', alt: 'Influence Mobile' %>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item active">
+              <a class="nav-link" href="<%= offers_path %>">Offers</a>
+            </li>
+            <% if @is_admin %>
+              <li class="nav-item active">
+                <a class="nav-link" href="<%= users_path %>">Users</a>
+              </li>
+            <% end %>
+            <li class="nav-item active">
+              <a class="nav-link" href="<%= destroy_user_session_path %>">Logout</a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <% if notice %>
+      <div class="alert alert-success" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

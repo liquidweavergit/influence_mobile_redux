@@ -1,9 +1,15 @@
 class OffersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :redirect_non_admins, except: [:index, :show]
   before_action :set_offer, only: %i[ show edit update destroy ]
 
   # GET /offers or /offers.json
   def index
-    @offers = Offer.all
+    @offers = if @is_admin
+                Offer.all.paginate(page: params[:page], per_page: 25)
+              else
+                current_user&.offers&.paginate(page: params[:page], per_page: 25)
+              end
   end
 
   # GET /offers/1 or /offers/1.json
@@ -65,6 +71,6 @@ class OffersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def offer_params
-      params.fetch(:offer, {})
+      params.fetch(:offer, {}).permit(:title, :description, :min_age, :max_age, :gender, :expiration_date)
     end
 end

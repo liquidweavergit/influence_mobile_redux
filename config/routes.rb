@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  root "offers#index"
+
   resources :offers
+  resources :users
 
   # Mark Weaver - 2023-12-22
   # Update to shorten URLs; default would be user/*

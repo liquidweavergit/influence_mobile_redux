@@ -2,10 +2,10 @@
   <div class="card shadow" style="width: 90%; height: 90vh">
     <h4 class="card-header d-flex justify-content-between align-items-center">
       <div>
-        <i class="fas fa-user-alt"></i> Offers
+        <i class="fas fa-user-alt"></i> Users
       </div>
       <% if @is_admin %>
-        <%= link_to "New offer", new_offer_path, class: "btn btn-sm btn-primary" %>
+        <%= link_to "New user", new_user_path, class: "btn btn-sm btn-primary" %>
       <% end %>
     </h4>
     <div class="card-body" style="overflow-y: auto;">
@@ -13,22 +13,23 @@
         <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">Age Range</th>
+          <th scope="col">Email</th>
+          <th scope="col">Username</th>
+          <th scope="col">Name</th>
+          <th scope="col">Birth Date</th>
           <th scope="col">Gender</th>
-          <th scope="col">Expiration</th>
+          <th scope="col">Admin</th>
         </tr>
         </thead>
         <tbody>
-          <% @offers.each do |offer| %>
-            <%= render offer %>
-          <% end %>
+        <% @users.each do |user| %>
+          <%= render user %>
+        <% end %>
         </tbody>
       </table>
     </div>
     <div class="card-footer text-center">
-      <%= will_paginate(@offers, :renderer => WillPaginate::ActionView::LinkRenderer, class: 'pagination-lg') %>
+      <%= will_paginate(@users, :renderer => WillPaginate::ActionView::LinkRenderer, class: 'pagination-lg') %>
     </div>
   </div>
 </div>

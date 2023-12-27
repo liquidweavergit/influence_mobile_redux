@@ -26,9 +26,6 @@ gem "stimulus-rails"
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails"
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
-
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
 
@@ -64,6 +61,11 @@ gem 'sassc-rails', '~> 2.1', '>= 2.1.2'
 # email validator
 gem 'email_validator', '~> 2.2', '>= 2.2.4'
 
+# Mark Weaver - 2023-12-24
+# email validator
+gem 'will_paginate', '~> 4.0'
+gem 'bootstrap-will_paginate', '~> 1.0'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -76,15 +78,11 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  # Add speed badges [https://github.com/MiniProfiler/rack-1-profiler]
   # gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-
-  # Mark Weaver - 2023-12-23
-  # Testing
-  gem 'rspec-rails', '~> 6.1'
 end
 
 group :test do
@@ -95,4 +93,7 @@ group :test do
   # Mark Weaver - 2023-12-23
   # Testing
   gem 'rspec-rails', '~> 6.1'
+  gem 'simplecov', '~> 0.22.0'
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
 end

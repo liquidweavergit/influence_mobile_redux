@@ -1,2 +1,8 @@
-<div id="<%= dom_id offer %>">
-</div>
+<tr>
+  <td><%= offer.id %></th>
+  <td><%= link_to offer.title, offer_path(offer) %></th>
+  <td><%= offer.description %></th>
+  <td><%= offer.min_age %> - <%= offer.max_age %></th>
+  <td><%= offer.gender %></th>
+  <td><%= offer.expiration_date %></th>
+</tr>

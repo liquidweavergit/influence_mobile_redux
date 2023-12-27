@@ -1,11 +1,12 @@
 <div class="d-flex justify-content-center vh-90 center pt-2">
   <div class="card shadow" style="width: 50%;">
     <h5 class="card-header">
-      Edit Offer
+      Edit User
     </h5>
     <div class="card-body">
       <%= render "form",
-                 offer: @offer,
+                 offer: @user,
+                 is_new_user: false,
                  button_text: 'Update' %>
 
     </div>
