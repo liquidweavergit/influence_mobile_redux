@@ -65,7 +65,18 @@ Run this command in a separate terminal instance
 ```bash
 docker-compose exec website bash
 bundle exec rspec
-<<<<<<< HEAD
+```
+
+##### 7. Run Rubocop
+
+To run the Rubocop, run the following commands
+You will need to run commands on the 'website' Docker container
+Run this command in a separate terminal instance
+(you will not have to "bash" into the container if you already have)
+
+```bash
+docker-compose exec website bash
+bundle exec rubocop --parallel -A
 ```
 
 And now you can visit the site with the URL http://localhost:3000
