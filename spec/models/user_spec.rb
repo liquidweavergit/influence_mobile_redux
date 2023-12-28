@@ -1,54 +1,56 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
   context 'validation tests' do
     it 'ensure first name presence' do
-      user = FactoryBot.build(:user, first_name: nil ).save
+      user = FactoryBot.build(:user, first_name: nil).save
       expect(user).to eq(false)
     end
 
     it 'ensure last name presence' do
-      user = FactoryBot.build(:user, last_name: nil ).save
+      user = FactoryBot.build(:user, last_name: nil).save
       expect(user).to eq(false)
     end
 
     it 'ensure email presence' do
-      user = FactoryBot.build(:user, email: nil ).save
+      user = FactoryBot.build(:user, email: nil).save
       expect(user).to eq(false)
     end
 
     it 'ensure email extension validation' do
-      user = FactoryBot.build(:user, email: 'email@email' ).save
+      user = FactoryBot.build(:user, email: 'email@email').save
       expect(user).to eq(false)
     end
 
     it 'ensure email prefix validation' do
-      user = FactoryBot.build(:user, email: '@email.com' ).save
+      user = FactoryBot.build(:user, email: '@email.com').save
       expect(user).to eq(false)
     end
 
     it 'ensure email at validation' do
-      user = FactoryBot.build(:user, email: 'emailemail.com' ).save
+      user = FactoryBot.build(:user, email: 'emailemail.com').save
       expect(user).to eq(false)
     end
 
     it 'ensure username presence' do
-      user = FactoryBot.build(:user, username: nil ).save
+      user = FactoryBot.build(:user, username: nil).save
       expect(user).to eq(false)
     end
 
     it 'ensure birthdate presence' do
-      user = FactoryBot.build(:user, birthdate: nil ).save
+      user = FactoryBot.build(:user, birthdate: nil).save
       expect(user).to eq(false)
     end
 
     it 'ensure gender presence' do
-      user = FactoryBot.build(:user, gender: nil ).save
+      user = FactoryBot.build(:user, gender: nil).save
       expect(user).to eq(false)
     end
 
     it 'ensure matching passwords' do
-      user = FactoryBot.build(:user, password_confirmation: 'password_confirmation' ).save
+      user = FactoryBot.build(:user, password_confirmation: 'password_confirmation').save
       expect(user).to eq(false)
     end
 
@@ -67,6 +69,5 @@ RSpec.describe User, type: :model do
   end
 
   context 'scope tests' do
-
   end
 end

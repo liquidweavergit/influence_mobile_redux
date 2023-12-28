@@ -29,17 +29,7 @@ COPY \
 RUN yarn install && bundle install
 
 VOLUME ["/app"]
-
-<<<<<<< HEAD
-RUN gem update --system
-RUN bundle install -j $(nproc)
-RUN mkdir -p tmp/pids
-RUN yarn install
-CMD ["puma", "-C", "config/puma.rb"]
-# CMD ["bin/dev"]
-=======
 COPY docker-entrypoint.sh /usr/local/bin
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["puma", "-C", "config/puma.rb"]
->>>>>>> 1835f85b88b1e3fbb6d43d5b9c35c8c55a68d11c

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class OffersController < ApplicationController
   before_action :authenticate_user!
-  before_action :redirect_non_admins, except: [:index, :show]
-  before_action :set_offer, only: %i[ show edit update destroy ]
+  before_action :redirect_non_admins, except: %i[index show]
+  before_action :set_offer, only: %i[show edit update destroy]
 
   # GET /offers or /offers.json
   def index
@@ -13,8 +15,7 @@ class OffersController < ApplicationController
   end
 
   # GET /offers/1 or /offers/1.json
-  def show
-  end
+  def show; end
 
   # GET /offers/new
   def new
@@ -22,8 +23,7 @@ class OffersController < ApplicationController
   end
 
   # GET /offers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /offers or /offers.json
   def create
@@ -31,7 +31,7 @@ class OffersController < ApplicationController
 
     respond_to do |format|
       if @offer.save
-        format.html { redirect_to offer_url(@offer), notice: "Offer was successfully created." }
+        format.html { redirect_to offer_url(@offer), notice: 'Offer was successfully created.' }
         format.json { render :show, status: :created, location: @offer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class OffersController < ApplicationController
   def update
     respond_to do |format|
       if @offer.update(offer_params)
-        format.html { redirect_to offer_url(@offer), notice: "Offer was successfully updated." }
+        format.html { redirect_to offer_url(@offer), notice: 'Offer was successfully updated.' }
         format.json { render :show, status: :ok, location: @offer }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -58,19 +58,20 @@ class OffersController < ApplicationController
     @offer.destroy!
 
     respond_to do |format|
-      format.html { redirect_to offers_url, notice: "Offer was successfully destroyed." }
+      format.html { redirect_to offers_url, notice: 'Offer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_offer
-      @offer = Offer.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def offer_params
-      params.fetch(:offer, {}).permit(:title, :description, :min_age, :max_age, :gender, :expiration_date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_offer
+    @offer = Offer.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def offer_params
+    params.fetch(:offer, {}).permit(:title, :description, :min_age, :max_age, :gender, :expiration_date)
+  end
 end

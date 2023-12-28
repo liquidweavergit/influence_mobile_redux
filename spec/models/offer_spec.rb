@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Offer, type: :model do
@@ -51,7 +53,6 @@ RSpec.describe Offer, type: :model do
       offer = FactoryBot.build(:offer).save
       expect(offer).to eq(true)
     end
-
   end
 
   context 'scope tests' do
